@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aerial Survey Flight Report</title>
+    {% load static %}
+    <style>
+        /* ... your CSS styles ... */
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{% static 'flight_data/photo.png' %}" alt="Company Logo" class="logo">
+        <h1>Aerial Survey Flight Report</h1>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Project Name & Block No.</td>
+                <td id="project_name"></td>
+                <td id="flight_date"></td>
+            </tr>
+            <tr>
+                <td>Operators</td>
+                <td id="operators"></td>
+                <td id="departure"></td>
+            </tr>
+            <tr>
+                <td>Overlap (%)</td>
+                <td id="overlap"></td>
+                <td id="aircraft"></td>
+            </tr>
+            <tr>
+                <td>Navigation System</td>
+                <td id="navigation_system"></td>
+                <td id="imu"></td>
+            </tr>
+            <tr>
+                <td>Camera</td>
+                <td id="camera"></td>
+                <td id="focal_length"></td>
+            </tr>
+            <tr>
+                <td>GPS Data Logging Time</td>
+                <td id="gps_data_logging_time"></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>Internal POS Data Code</td>
+                <td id="internal_pos_data_code"></td>
+                <td id="shutter_speed"></td>
+            </tr>
+            <tr>
+                <td>ISO</td>
+                <td id="iso"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Engine Start</td>
+                <td id="engine_start"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Landing</td>
+                <td id="landing"></td>
+                <td></td>
+            </tr>
+            </tbody>
+    </table>
+
+    <div id="report-details">  <h2>Report Details</h2>
+        <p>Weather: <span id="weather"></span></p>
+        <p>Remarks: <span id="report_remarks"></span></p>
+        <p>Signature: <span id="signature"></span></p>
+    </div>
+
+
+    <script>
+        const API_URL = '/api/flight_data/';  // Your Django API endpoint
+
+        function loadFlightData() {
+            fetch(API_URL)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const flightData = data[0]; // Assuming you want the first/latest report
+
+                        // Populate table cells
+                        document.getElementById('project_name').textContent = flightData.project_name || '';
+                        document.getElementById('operators').textContent = flightData.operators || '';
+                        document.getElementById('overlap').textContent = flightData.overlap || '';
+                        document.getElementById('navigation_system').textContent = flightData.navigation_system || '';
+                        document.getElementById('camera').textContent = flightData.camera || '';
+                        document.getElementById('gps_data_logging_time').textContent = flightData.gps_data_logging_time || '';
+                        document.getElementById('internal_pos_data_code').textContent = flightData.internal_pos_data_code || '';
+                        document.getElementById('iso').textContent = flightData.iso || '';
+                        document.getElementById('engine_start').textContent = flightData.engine_start || '';
+                        document.getElementById('landing').textContent = flightData.landing || '';
+                        document.getElementById('flight_date').textContent = flightData.flight_date || '';
+                        document.getElementById('departure').textContent = flightData.departure || '';
+                        document.getElementById('aircraft').textContent = flightData.aircraft || '';
+                        document.getElementById('imu').textContent = flightData.imu || '';
+                        document.getElementById('focal_length').textContent = flightData.focal_length || '';
+                        document.getElementById('shutter_speed').textContent = flightData.shutter_speed || '';
+                        document.getElementById('weather').textContent = flightData.weather || '';
+                        document.getElementById('report_remarks').textContent = flightData.remarks || '';
+                        document.getElementById('signature').textContent = flightData.signature || '';
+                        // ... populate other fields ...
+
+                    } else {
+                        console.log("No data or unexpected data format from API.");
+                    }
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }
+
+        // Initial data load
+        loadFlightData();
+
+        // Set up polling (or use WebSockets for real-time updates)
+        setInterval(loadFlightData, 5000); // Poll every 5 seconds
+    </script>
+
+</body>
+</html>
