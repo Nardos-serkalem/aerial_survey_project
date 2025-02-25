@@ -2,131 +2,181 @@
 <html>
 <head>
     <title>Aerial Survey Flight Report</title>
-    {% load static %}
     <style>
-        /* ... your CSS styles ... */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            font-weight: bold;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+        .logo {
+            max-width: 200px; /* Adjust as needed */
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        input[type="time"], input[type="number"], input[type="text"], input[type="date"], textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 80px;
+        }
     </style>
 </head>
 <body>
     <header>
-        <img src="{% static 'flight_data/photo.png' %}" alt="Company Logo" class="logo">
-        <h1>Aerial Survey Flight Report</h1>
+        <img src="ssgi.png" alt="Institution Logo" class="logo"> 
+        <h1>Space Science and Geospatial Institute</h1>
+        <h2>የስፔስ ሳይንስ እና ጂኦስፔሽያል ኢንስቲትዩት</h2>
+        <h3>AERIAL SURVEY FLIGHT REPORT</h3>
     </header>
+
+    <form id="flightDataForm">
+        <table>
+            <tr>
+                <td>Project Name & Block No.</td>
+                <td><input type="text" id="project_name" name="project_name" required value="Jimma Zone"></td>
+                <td>Flight No.Day</td>
+                <td><input type="text" id="pilot" name="pilot" required value="peter and Evic"></td>
+                <td>flight Data</td>
+                <td><input type="text" id="flight date" name="flight date" value="N96 CC"></td>
+            </tr>
+            <tr>
+                <td>Operators</td>
+                <td><input type="text" id="flight_no_day" name="flight_no_day" required value="3"></td>
+                <td>Pilot</td>
+                <td><input type="date" id="flight_date" name="flight_date" required value="2025-07-02"></td>
+                <td>Departure:</td>
+                <td><input type="text" id="departure" name="departure" value="AA"></td>
+            </tr>
+            <tr>
+                <td>Overlap (%)</td>
+                <td><input type="number" id="overlap" name="overlap" required value=""></td>
+                <td>GSD (cm)</td>
+                <td><input type="text" id="gsd" name="gsd" required value=""></td>
+                <td>Aircraft</td>
+                <td><input type="text" id="aircraft" name="aircraft" value=""></td>
+            </tr>
+            <tr>
+                <td>Navigation System</td>
+                <td><input type="text" id="navigation_system" name="navigation_system" value="Applanix POSTrack"></td>
+                <td>Mount</td>
+                <td><input type="text" id="mount" name="mount" value="GSM 4000"></td>
+                <td>IMU</td>
+                <td><input type="text" id="imu" name="imu" value=""></td>
+            </tr>
+            <tr>
+                <td>Camera</td>
+                <td><input type="text" id="camera" name="camera" value="UCE 1100"></td>
+                <td>Serial No</td>
+                <td><input type="text" id="serial no" name="serial no" value="U-C-E-1-8081-0137"></td>
+                <td>Focal Length</td>
+                <td><input type="text" id="focal length" name="focal length" value=""></td>
+            </tr>
+            <tr>
+                <td>GPS Data Logging Time</td>
+                <td><input type="time" id="gps_data_logging_time" name="gps_data_logging_time" value=""></td>
+                <td>Sun Angel</td>
+                <td><input type="text" id="sun angle" name="sun angle" value=""></td>
+                <td>none</td>
+                <td><input type="text" id="none" name="none " value=""></td>
+            </tr>
+            <tr>
+                <td>Internal POS Data Code</td>
+                <td><input type="text" id="internal_pos_data_code" name="internal_pos_data_code" value=""></td>
+                <td>Aperture</td>
+                <td><input type="text" id="aperture" name="aperture" value="F6.7"></td>
+                <td>Shutter Speed</td>
+                <td><input type="text" id="shutter speed" name="shutter speed" value=""></td>
+            </tr>
+            <tr>
+                <td>ISO</td>
+                <td><input type="text" id="iso" name="iso" value=""></td>
+                <td>FMC</td>
+                <td><input type="text" id="fmc" name="fmc" value=""></td>
+                <td>IBD</td>
+                <td><input type="text" id="ibd" name="ibd" value=""></td>
+            </tr>
+            <tr>
+                <td>Engine Start</td>
+                <td><input type="time" id="engine_start" name="engine_start" value=""></td>
+                <td>Start Movement</td>
+                <td><input type="time" id="start_movement" name="start_movement" value=""></td>
+                <td>Take off</td>
+                <td><input type="text" id="take off" name="take off" value=""></td>
+            </tr>
+            <tr>
+                <td>Landing</td>
+                <td><input type="time" id="landing" name="landing" value=""></td>
+                <td>Stop Movement</td>
+                <td><input type="time" id="stop_movement" name="stop_movement" value=""></td>
+                <td> Shutdown</td>
+                <td><input type="text" id="Shutdown" name="shutdown" value=""></td>
+            </tr>
+            <tr>
+                <td colspan="6"><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
 
     <table>
         <thead>
             <tr>
-                <th>Section</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
+                <th>Time of entry</th>
+                <th>Time of End</th>
+                <th>Turning Time</th>
+                <th>Run</th>
+                <th>Heading</th>
+                <th>Dir.</th>
+                <th>Photo Numbers</th>
+                <th>Qty.</th>
+                <th>Remarks</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Project Name & Block No.</td>
-                <td id="project_name"></td>
-                <td id="flight_date"></td>
+                <td><input type="time" name="time_of_entry" value="08:53"></td>
+                <td><input type="time" name="time_of_end" value="08:59"></td>
+                <td><input type="number" name="turning_time" value="61"></td>
+                <td><input type="number" name="run" value=""></td>
+                <td><input type="number" name="heading" value="267"></td>
+                <td><input type="text" name="dir" value="E-W"></td>
+                <td><input type="text" name="photo_numbers" value="1076-1106"></td>
+                <td><input type="number" name="qty" value="31"></td>
+                <td><input type="text" name="remarks" value=""></td>
             </tr>
             <tr>
-                <td>Operators</td>
-                <td id="operators"></td>
-                <td id="departure"></td>
+                <td><input type="time" name="time_of_entry" value="09:03"></td>
+                <td><input type="time" name="time_of_end" value=""></td>
+                <td><input type="number" name="turning_time" value="4"></td>
+                <td><input type="number" name="run" value="24"></td>
+                <td><input type="number" name="heading" value="87"></td>
+                <td><input type="text" name="dir" value="W-E"></td>
+                <td><input type="text" name="photo_numbers" value="1107-1136"></td>
+                <td><input type="number" name="qty" value="29"></td>
+                <td><input type="text" name="remarks" value="Cloud"></td>
             </tr>
             <tr>
-                <td>Overlap (%)</td>
-                <td id="overlap"></td>
-                <td id="aircraft"></td>
+                <td><input type="time" name="time_of_entry" value="09:14"></td>
+                <td><input type="time" name="time_of_end" value=""></td>
+                <td><input type="number" name="turning_time" value=""></td>
+                <td><input type="number" name="run" value="58"></td>
+                <td><input type="number" name="heading" value="267"></td>
+                <td><input type="text" name="dir" value="E-W"></td>
+                <td><input type="text" name="photo_numbers" value="1137-1200"></td>
+                <td><input type="number" name="qty" value="66"></td>
+                <td><input type="text" name="remarks" value=""></td>
             </tr>
             <tr>
-                <td>Navigation System</td>
-                <td id="navigation_system"></td>
-                <td id="imu"></td>
-            </tr>
-            <tr>
-                <td>Camera</td>
-                <td id="camera"></td>
-                <td id="focal_length"></td>
-            </tr>
-            <tr>
-                <td>GPS Data Logging Time</td>
-                <td id="gps_data_logging_time"></td>
-                <td>None</td>
-            </tr>
-            <tr>
-                <td>Internal POS Data Code</td>
-                <td id="internal_pos_data_code"></td>
-                <td id="shutter_speed"></td>
-            </tr>
-            <tr>
-                <td>ISO</td>
-                <td id="iso"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Engine Start</td>
-                <td id="engine_start"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Landing</td>
-                <td id="landing"></td>
-                <td></td>
-            </tr>
-            </tbody>
-    </table>
-
-    <div id="report-details">  <h2>Report Details</h2>
-        <p>Weather: <span id="weather"></span></p>
-        <p>Remarks: <span id="report_remarks"></span></p>
-        <p>Signature: <span id="signature"></span></p>
-    </div>
-
-
-    <script>
-        const API_URL = '/api/flight_data/';  // Your Django API endpoint
-
-        function loadFlightData() {
-            fetch(API_URL)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        const flightData = data[0]; // Assuming you want the first/latest report
-
-                        // Populate table cells
-                        document.getElementById('project_name').textContent = flightData.project_name || '';
-                        document.getElementById('operators').textContent = flightData.operators || '';
-                        document.getElementById('overlap').textContent = flightData.overlap || '';
-                        document.getElementById('navigation_system').textContent = flightData.navigation_system || '';
-                        document.getElementById('camera').textContent = flightData.camera || '';
-                        document.getElementById('gps_data_logging_time').textContent = flightData.gps_data_logging_time || '';
-                        document.getElementById('internal_pos_data_code').textContent = flightData.internal_pos_data_code || '';
-                        document.getElementById('iso').textContent = flightData.iso || '';
-                        document.getElementById('engine_start').textContent = flightData.engine_start || '';
-                        document.getElementById('landing').textContent = flightData.landing || '';
-                        document.getElementById('flight_date').textContent = flightData.flight_date || '';
-                        document.getElementById('departure').textContent = flightData.departure || '';
-                        document.getElementById('aircraft').textContent = flightData.aircraft || '';
-                        document.getElementById('imu').textContent = flightData.imu || '';
-                        document.getElementById('focal_length').textContent = flightData.focal_length || '';
-                        document.getElementById('shutter_speed').textContent = flightData.shutter_speed || '';
-                        document.getElementById('weather').textContent = flightData.weather || '';
-                        document.getElementById('report_remarks').textContent = flightData.remarks || '';
-                        document.getElementById('signature').textContent = flightData.signature || '';
-                        // ... populate other fields ...
-
-                    } else {
-                        console.log("No data or unexpected data format from API.");
-                    }
-                })
-                .catch(error => console.error("Error fetching data:", error));
-        }
-
-        // Initial data load
-        loadFlightData();
-
-        // Set up polling (or use WebSockets for real-time updates)
-        setInterval(loadFlightData, 5000); // Poll every 5 seconds
-    </script>
-
-</body>
-</html>
+                <td>
