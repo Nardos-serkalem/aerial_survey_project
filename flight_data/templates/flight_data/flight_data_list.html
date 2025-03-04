@@ -3,44 +3,84 @@
 <head>
     <title>Aerial Survey Flight Report</title>
     <style>
+        body {
+            background-color: #fff; 
+            color: #000; 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #000000; 
+            color: #eee; 
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
+
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
+            transition: border-color 0.3s ease; /* Smooth transition for table borders */
         }
+
         th {
             font-weight: bold;
         }
+
         header {
             text-align: center;
             padding: 20px;
         }
+
         .logo {
-            max-width: 200px; /* Adjust as needed */
+            max-width: 200px;
             height: auto;
             display: block;
             margin: 0 auto 10px;
         }
+
         input[type="time"], input[type="number"], input[type="text"], input[type="date"], textarea {
             width: 100%;
             box-sizing: border-box;
         }
+
         textarea {
             height: 80px;
+        }
+
+        /* Dark mode specific styles */
+        body.dark-mode table th,
+        body.dark-mode table td {
+            border-color: #eee;
+        }
+
+        /* Style the dark mode toggle button */
+        #darkModeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            background-color: #444;
+            color: #eee;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="ssgi.png" alt="Institution Logo" class="logo"> 
+        <img src="flight/ssgi.png" alt="Institution Logo" class="logo">
         <h1>Space Science and Geospatial Institute</h1>
         <h2>የስፔስ ሳይንስ እና ጂኦስፔሽያል ኢንስቲትዩት</h2>
         <h3>AERIAL SURVEY FLIGHT REPORT</h3>
     </header>
+
+    <button id="darkModeToggle">Dark Mode</button>
 
     <form id="flightDataForm">
         <table>
@@ -178,5 +218,31 @@
                 <td><input type="number" name="qty" value="66"></td>
                 <td><input type="text" name="remarks" value=""></td>
             </tr>
-            <tr>
-                <td>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <td>Weather:</td>
+            <td><input type="text" name="weather" value=""></td> 
+        </tr>
+        <tr>
+            <td>Remarks:</td>
+            <td><textarea name="remarks"></textarea></td> 
+        </tr>
+        <tr>
+            <td>Signature:</td>
+            <td><input type="text" name="signature" value=""></td> 
+        </tr>
+    </table>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
