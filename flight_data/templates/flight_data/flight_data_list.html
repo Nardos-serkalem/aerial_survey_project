@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +15,16 @@
             color: #eee; 
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
+        #main-form-container {
+    max-width: 90%; /* Adjust as needed */
+    margin: 20px auto; /* Centers the container */
+}
+
+table {
+    width: 95%; /* Adjust to create spacing */
+    margin: 0 auto 15px; /* Centers the table */
+    border-collapse: collapse;
+}
 
         th, td {
             border: 1px solid black;
@@ -74,8 +80,8 @@
 </head>
 <body>
     <header>
-        <img src="ssgi.png" alt="Institution Logo" class="logo">
-        <h1>Space Science and Geospatial Institute</h1>
+        <img src="{% static 'flight_data/ssgi.png' %}" alt="Company Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto 10px;">
+        <h1>SPACE SCIENCE AND GEOSPATIAL INSTITUTE</h1>
         <h2>የስፔስ ሳይንስ እና ጂኦስፔሽያል ኢንስቲትዩት</h2>
         <h3>AERIAL SURVEY FLIGHT REPORT</h3>
     </header>
