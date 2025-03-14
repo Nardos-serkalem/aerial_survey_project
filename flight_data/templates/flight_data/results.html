@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Data Submission Results</title>
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #000000;
+            color: #eee;
+        }
+
+        table {
+            width: 95%;
+            margin: 0 auto 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            transition: border-color 0.3s ease;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        body.dark-mode table th,
+        body.dark-mode table td {
+            border-color: #eee;
+        }
+
+        #darkModeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            background-color: #444;
+            color: #eee;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{% static 'flight_data/ssgi.png' %}" alt="Company Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto 10px;">
+        <h1>SPACE SCIENCE AND GEOSPATIAL INSTITUTE</h1>
+        <h2>የስፔስ ሳይንስ እና ጂኦስፔሽያል ኢንስቲትዩት</h2>
+        <h3>AERIAL SURVEY FLIGHT REPORT</h3>
+    </header>
+
+    <button id="darkModeToggle">Dark Mode</button>
+
+    <h2>Submission Successful!</h2>
+
+    <p>Here's the data you submitted:</p>
+
+    <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>Project Name & Block No.</td><td>{{ project_name }}</td></tr>
+        <tr><td>Flight No.Day</td><td>{{ pilot }}</td></tr>
+        <tr><td>flight Data</td><td>{{ flight_date }}</td></tr>
+        <tr><td>Operators</td><td>{{ flight_no_day }}</td></tr>
+        <tr><td>Pilot</td><td>{{ flight_date }}</td></tr>
+        <tr><td>Departure</td><td>{{ departure }}</td></tr>
+        <tr><td>Overlap (%)</td><td>{{ overlap }}</td></tr>
+        <tr><td>GSD (cm)</td><td>{{ gsd }}</td></tr>
+        <tr><td>Aircraft</td><td>{{ aircraft }}</td></tr>
+        <tr><td>Navigation System</td><td>{{ navigation_system }}</td></tr>
+        <tr><td>Mount</td><td>{{ mount }}</td></tr>
+        <tr><td>IMU</td><td>{{ imu }}</td></tr>
+        <tr><td>Camera</td><td>{{ camera }}</td></tr>
+        <tr><td>Serial No</td><td>{{ serial_no }}</td></tr>
+        <tr><td>Focal Length</td><td>{{ focal_length }}</td></tr>
+        <tr><td>GPS Data Logging Time</td><td>{{ gps_data_logging_time }}</td></tr>
+        <tr><td>Sun Angel</td><td>{{ sun_angle }}</td></tr>
+        <tr><td>None</td><td>{{ none }}</td></tr>
+        <tr><td>Internal POS Data Code</td><td>{{ internal_pos_data_code }}</td></tr>
+        <tr><td>Aperture</td><td>{{ aperture }}</td></tr>
+        <tr><td>Shutter Speed</td><td>{{ shutter_speed }}</td></tr>
+        <tr><td>ISO</td><td>{{ iso }}</td></tr>
+        <tr><td>FMC</td><td>{{ fmc }}</td></tr>
+        <tr><td>IBD</td><td>{{ ibd }}</td></tr>
+        <tr><td>Engine Start</td><td>{{ engine_start }}</td></tr>
+        <tr><td>Start Movement</td><td>{{ start_movement }}</td></tr>
+        <tr><td>Take off</td><td>{{ take_off }}</td></tr>
+        <tr><td>Landing</td><td>{{ landing }}</td></tr>
+        <tr><td>Stop Movement</td><td>{{ stop_movement }}</td></tr>
+        <tr><td>Shutdown</td><td>{{ shutdown }}</td></tr>
+        <tr><td>Time of entry</td><td>{{ time_of_entry }}</td></tr>
+        <tr><td>Time of End</td><td>{{ time_of_end }}</td></tr>
+        <tr><td>Turning Time</td><td>{{ turning_time }}</td></tr>
+        <tr><td>Run</td><td>{{ run }}</td></tr>
+        <tr><td>Heading</td><td>{{ heading }}</td></tr>
+        <tr><td>Dir.</td><td>{{ dir }}</td></tr>
+        <tr><td>Photo Numbers</td><td>{{ photo_numbers }}</td></tr>
+        <tr><td>Qty.</td><td>{{ qty }}</td></tr>
+        <tr><td>Remarks</td><td>{{ remarks }}</td></tr>
+        <tr><td>Weather</td><td>{{ weather }}</td></tr>
+        <tr><td>Remarks</td><td>{{ remarks_textarea }}</td></tr>
+        <tr><td>Signature</td><td>{{ signature }}</td></tr>
+    </table>
+
+    <p><a href="{% url 'flight_data_list' %}">Submit Another Entry</a></p>
+    <p><a href="{% url 'flight_data_list' %}">View All Entries</a></p>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
