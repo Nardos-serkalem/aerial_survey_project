@@ -5,4 +5,3 @@ admin.site.register(FlightData)
 admin.site.register(FlightObservation)
 admin.site.register(OtherInformation)
 
-
