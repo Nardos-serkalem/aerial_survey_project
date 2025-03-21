@@ -16,21 +16,21 @@
         }
 
         #main-form-container {
-    max-width: 90%; /* Adjust as needed */
-    margin: 20px auto; /* Centers the container */
-}
+            max-width: 90%;
+            margin: 20px auto;
+        }
 
-table {
-    width: 95%; /* Adjust to create spacing */
-    margin: 0 auto 15px; /* Centers the table */
-    border-collapse: collapse;
-}
+        table {
+            width: 95%;
+            margin: 0 auto 15px;
+            border-collapse: collapse;
+        }
 
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
-            transition: border-color 0.3s ease; /* Smooth transition for table borders */
+            transition: border-color 0.3s ease;
         }
 
         th {
@@ -58,13 +58,11 @@ table {
             height: 80px;
         }
 
-        /* Dark mode specific styles */
         body.dark-mode table th,
         body.dark-mode table td {
             border-color: #eee;
         }
 
-        /* Style the dark mode toggle button */
         #darkModeToggle {
             position: fixed;
             top: 10px;
@@ -88,15 +86,23 @@ table {
 
     <button id="darkModeToggle">Dark Mode</button>
 
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form id="flightDataForm">
         <table>
             <tr>
                 <td>Project Name & Block No.</td>
                 <td><input type="text" id="project_name" name="project_name" required value="Jimma Zone"></td>
-                <td>Flight No.Day</td>
+                <td>Flight No. Day</td>
                 <td><input type="text" id="pilot" name="pilot" required value="peter and Evic"></td>
-                <td>flight Data</td>
-                <td><input type="text" id="flight date" name="flight date" value="N96 CC"></td>
+                <td>Flight Data</td>
+                <td><input type="text" id="flight_date" name="flight_date" value="N96 CC"></td>
             </tr>
             <tr>
                 <td>Operators</td>
@@ -126,17 +132,17 @@ table {
                 <td>Camera</td>
                 <td><input type="text" id="camera" name="camera" value="UCE 1100"></td>
                 <td>Serial No</td>
-                <td><input type="text" id="serial no" name="serial no" value="U-C-E-1-8081-0137"></td>
+                <td><input type="text" id="serial_no" name="serial_no" value="U-C-E-1-8081-0137"></td>
                 <td>Focal Length</td>
-                <td><input type="text" id="focal length" name="focal length" value=""></td>
+                <td><input type="text" id="focal_length" name="focal_length" value=""></td>
             </tr>
             <tr>
                 <td>GPS Data Logging Time</td>
                 <td><input type="time" id="gps_data_logging_time" name="gps_data_logging_time" value=""></td>
-                <td>Sun Angel</td>
-                <td><input type="text" id="sun angle" name="sun angle" value=""></td>
-                <td>none</td>
-                <td><input type="text" id="none" name="none " value=""></td>
+                <td>Sun Angle</td>
+                <td><input type="text" id="sun_angle" name="sun_angle" value=""></td>
+                <td>None</td>
+                <td><input type="text" id="none" name="none" value=""></td>
             </tr>
             <tr>
                 <td>Internal POS Data Code</td>
@@ -144,7 +150,7 @@ table {
                 <td>Aperture</td>
                 <td><input type="text" id="aperture" name="aperture" value="F6.7"></td>
                 <td>Shutter Speed</td>
-                <td><input type="text" id="shutter speed" name="shutter speed" value=""></td>
+                <td><input type="text" id="shutter_speed" name="shutter_speed" value=""></td>
             </tr>
             <tr>
                 <td>ISO</td>
@@ -160,91 +166,90 @@ table {
                 <td>Start Movement</td>
                 <td><input type="time" id="start_movement" name="start_movement" value=""></td>
                 <td>Take off</td>
-                <td><input type="text" id="take off" name="take off" value=""></td>
+                <td><input type="text" id="take_off" name="take_off" value=""></td>
             </tr>
             <tr>
                 <td>Landing</td>
                 <td><input type="time" id="landing" name="landing" value=""></td>
                 <td>Stop Movement</td>
                 <td><input type="time" id="stop_movement" name="stop_movement" value=""></td>
-                <td> Shutdown</td>
-                <td><input type="text" id="Shutdown" name="shutdown" value=""></td>
+                <td>Shutdown</td>
+                <td><input type="text" id="shutdown" name="shutdown" value=""></td>
             </tr>
             <tr>
                 <td colspan="6"><button type="submit">Submit</button></td>
             </tr>
         </table>
-    <table>
-        <thead>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Time of Entry</th>
+                    <th>Time of End</th>
+                    <th>Turning Time</th>
+                    <th>Run</th>
+                    <th>Heading</th>
+                    <th>Dir.</th>
+                    <th>Photo Numbers</th>
+                    <th>Qty.</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="time" name="time_of_entry" value="08:53"></td>
+                    <td><input type="time" name="time_of_end" value="08:59"></td>
+                    <td><input type="number" name="turning_time" value="61"></td>
+                    <td><input type="number" name="run" value=""></td>
+                    <td><input type="number" name="heading" value="267"></td>
+                    <td><input type="text" name="dir" value="E-W"></td>
+                    <td><input type="text" name="photo_numbers" value="1076-1106"></td>
+                    <td><input type="number" name="qty" value="31"></td>
+                    <td><input type="text" name="remarks" value=""></td>
+                </tr>
+                <tr>
+                    <td><input type="time" name="time_of_entry" value="09:03"></td>
+                    <td><input type="time" name="time_of_end" value=""></td>
+                    <td><input type="number" name="turning_time" value="4"></td>
+                    <td><input type="number" name="run" value="24"></td>
+                    <td><input type="number" name="heading" value="87"></td>
+                    <td><input type="text" name="dir" value="W-E"></td>
+                    <td><input type="text" name="photo_numbers" value="1107-1136"></td>
+                    <td><input type="number" name="qty" value="29"></td>
+                    <td><input type="text" name="remarks" value="Cloud"></td>
+                </tr>
+                <tr>
+                    <td><input type="time" name="time_of_entry" value="09:14"></td>
+                    <td><input type="time" name="time_of_end" value=""></td>
+                    <td><input type="number" name="turning_time" value=""></td>
+                    <td><input type="number" name="run" value="58"></td>
+                    <td><input type="number" name="heading" value="267"></td>
+                    <td><input type="text" name="dir" value="E-W"></td>
+                    <td><input type="text" name="photo_numbers" value="1137-1200"></td>
+                    <td><input type="number" name="qty" value="66"></td>
+                    <td><input type="text" name="remarks" value=""></td>
+                </tr>
+                <tr>
+                    <td colspan="6"><button type="submit">Submit</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
             <tr>
-                <th>Time of entry</th>
-                <th>Time of End</th>
-                <th>Turning Time</th>
-                <th>Run</th>
-                <th>Heading</th>
-                <th>Dir.</th>
-                <th>Photo Numbers</th>
-                <th>Qty.</th>
-                <th>Remarks</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="time" name="time_of_entry" value="08:53"></td>
-                <td><input type="time" name="time_of_end" value="08:59"></td>
-                <td><input type="number" name="turning_time" value="61"></td>
-                <td><input type="number" name="run" value=""></td>
-                <td><input type="number" name="heading" value="267"></td>
-                <td><input type="text" name="dir" value="E-W"></td>
-                <td><input type="text" name="photo_numbers" value="1076-1106"></td>
-                <td><input type="number" name="qty" value="31"></td>
-                <td><input type="text" name="remarks" value=""></td>
+                <td>Weather:</td>
+                <td><input type="text" name="weather" value=""></td> 
             </tr>
             <tr>
-                <td><input type="time" name="time_of_entry" value="09:03"></td>
-                <td><input type="time" name="time_of_end" value=""></td>
-                <td><input type="number" name="turning_time" value="4"></td>
-                <td><input type="number" name="run" value="24"></td>
-                <td><input type="number" name="heading" value="87"></td>
-                <td><input type="text" name="dir" value="W-E"></td>
-                <td><input type="text" name="photo_numbers" value="1107-1136"></td>
-                <td><input type="number" name="qty" value="29"></td>
-                <td><input type="text" name="remarks" value="Cloud"></td>
+                <td>Remarks:</td>
+                <td><textarea name="remarks"></textarea></td> 
             </tr>
             <tr>
-                <td><input type="time" name="time_of_entry" value="09:14"></td>
-                <td><input type="time" name="time_of_end" value=""></td>
-                <td><input type="number" name="turning_time" value=""></td>
-                <td><input type="number" name="run" value="58"></td>
-                <td><input type="number" name="heading" value="267"></td>
-                <td><input type="text" name="dir" value="E-W"></td>
-                <td><input type="text" name="photo_numbers" value="1137-1200"></td>
-                <td><input type="number" name="qty" value="66"></td>
-                <td><input type="text" name="remarks" value=""></td>
+                <td>Signature:</td>
+                <td><input type="text" name="signature" value=""></td> 
             </tr>
-            <tr>
-                <td colspan="6"><button type="submit">Submit</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <table>
-        <tr>
-            <td>Weather:</td>
-            <td><input type="text" name="weather" value=""></td> 
-        </tr>
-        <tr>
-            <td>Remarks:</td>
-            <td><textarea name="remarks"></textarea></td> 
-        </tr>
-        <tr>
-            <td>Signature:</td>
-            <td><input type="text" name="signature" value=""></td> 
-        </tr>
-        <tr>
-            <td colspan="6"><button type="submit">Submit</button></td>
-</form>
-        </tr>
-    </table>
+        </table>
+    </form>
 
     <script>
         const darkModeToggle = document.getElementById('darkModeToggle');
