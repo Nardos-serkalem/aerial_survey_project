@@ -1,44 +1,65 @@
-from django.shortcuts import render, redirect
-from django.db import transaction  # Ensures atomicity
-from .models import FlightData, FlightObservation, OtherInformation
-from .forms import FlightDataForm, FlightObservationForm, OtherInformationForm
+# flight_data/views.py
+
+from django.shortcuts import render
+from .forms import FlightDataForm  # Import your form
+from .models import FlightData  # Import your model
 
 def flight_data_list(request):
+    flight_data = None  # Ensure the variable is always defined
+    
     if request.method == 'POST':
-        flight_data_form = FlightDataForm(request.POST)
-        flight_observation_form = FlightObservationForm(request.POST)
-        other_info_form = OtherInformationForm(request.POST)
+        form = FlightDataForm(request.POST)  # Create a form instance with POST data
+        if form.is_valid():
+            # Save the data to the database (if needed)
+            flight_data = form.save()
 
-        if (
-            flight_data_form.is_valid() 
-            and flight_observation_form.is_valid() 
-            and other_info_form.is_valid()
-        ):
-            try:
-                with transaction.atomic():
-                    flight_data = flight_data_form.save()
-                    
-                    flight_observation = flight_observation_form.save(commit=False)
-                    flight_observation.flight_data = flight_data
-                    flight_observation.save()
+            # Pass the data to the template to display it
+            context = {
+                'project_name': flight_data.project_name,
+                'flight_no_day': flight_data.flight_no_day,
+                'flight_date': flight_data.flight_date,
+                'departure': flight_data.departure,
+                'overlap': flight_data.overlap,
+                'gsd': flight_data.gsd,
+                'aircraft': flight_data.aircraft,
+                'navigation_system': flight_data.navigation_system,
+                'mount': flight_data.mount,
+                'imu': flight_data.imu,
+                'camera': flight_data.camera,
+                'serial_no': flight_data.serial_no,
+                'focal_length': flight_data.focal_length,
+                'gps_data_logging_time': flight_data.gps_data_logging_time,
+                'sun_angle': flight_data.sun_angle,
+                'internal_pos_data_code': flight_data.internal_pos_data_code,
+                'aperture': flight_data.aperture,
+                'shutter_speed': flight_data.shutter_speed,
+                'iso': flight_data.iso,
+                'fmc': flight_data.fmc,
+                'ibd': flight_data.ibd,
+                'engine_start': flight_data.engine_start,
+                'start_movement': flight_data.start_movement,
+                'take_off': flight_data.take_off,
+                'landing': flight_data.landing,
+                'stop_movement': flight_data.stop_movement,
+                'shutdown': flight_data.shutdown,
+                'time_of_entry': flight_data.time_of_entry,
+                'time_of_end': flight_data.time_of_end,
+                'turning_time': flight_data.turning_time,
+                'run': flight_data.run,
+                'heading': flight_data.heading,
+                'dir': flight_data.dir,
+                'photo_numbers': flight_data.photo_numbers,
+                'qty': flight_data.qty,
+                'remarks': flight_data.remarks,
+                'weather': flight_data.weather,
+                'remarks_textarea': flight_data.remarks_textarea,
+                'signature': flight_data.signature,
+            }
 
-                    other_info = other_info_form.save(commit=False)
-                    other_info.flight_data = flight_data
-                    other_info.save()
-
-                return redirect('success')  # Ensure 'success' exists in urls.py
-            except Exception as e:
-                print(f"Error: {e}")  # Log error for debugging
-
+            # Render the results template with the context data
+            return render(request, 'flight_data/results.html', context)
     else:
-        flight_data_form = FlightDataForm()
-        flight_observation_form = FlightObservationForm()
-        other_info_form = OtherInformationForm()
-
-    context = {
-        'flight_data_form': flight_data_form,
-        'flight_observation_form': flight_observation_form,
-        'other_info_form': other_info_form,
-    }
-
-    return render(request, 'flight_data/flight_data_list.html', context)
+        form = FlightDataForm()  # Empty form for GET request
+    
+    # Render the flight data list page even for GET requests
+    return render(request, 'flight_data/flight_data_list.html', {'flight_data': flight_data, 'form': form})
